@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/MPAS-Dev/{{ name }}/archive/{{ version }}.tar.gz
   sha256: 97cf2fb7fe1614f60e2c8b85456308864929c9092c76d587d8222c35ca1cf49a
+  patches:
+    - agg_matplotlib.patch
 
 build:
   number: 0
