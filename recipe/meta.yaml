@@ -10,7 +10,7 @@ source:
   sha256: 081a6ea128272989b2700d4975f80f7309c13470592219adeb52a0a95c0a6527
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   noarch: python
   entry_points:
@@ -31,7 +31,7 @@ requirements:
   run:
     - python
     - numpy
-    - matplotlib
+    - matplotlib-base
     - cartopy
     - shapely
     - requests
