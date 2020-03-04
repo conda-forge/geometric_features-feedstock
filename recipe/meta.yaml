@@ -1,5 +1,11 @@
 {% set name = "geometric_features" %}
 {% set version = "0.1.6" %}
+{% set build = 1 %}
+
+{% if with_data != "True" %}
+# prioritize no data via build number
+{% set build = build + 100 %}
+{% endif %}
 
 package:
   name: {{ name|lower }}
@@ -8,11 +14,25 @@ package:
 source:
   url: https://github.com/MPAS-Dev/{{ name }}/archive/{{ version }}.tar.gz
   sha256: 8f2d32ca1b0915897afc1c471c5adadd51eafdd2cc6d1e9fba9cbaf946dde90f
+  patches:
+    - 0001-Add-GEOMETRIC_DATA_DIR-environment-variable.patch
 
 build:
-  number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  number: {{ build }}
   noarch: python
+
+  {% if with_data == "True" %}
+  {% set data_prefix = "with_data" %}
+  {% else %}
+  {% set data_prefix = "no_data" %}
+  {% endif %}
+  # add build string so packages can depend on
+  # with_data or no_data variants
+  # dependencies:
+  # `PKG_NAME * no_data*` for no geometric data included
+  # `PKG_NAME * with_data*` for all geometric data included
+  string: "{{ data_prefix }}_py_h{{ PKG_HASH }}_{{ build }}"
+
   entry_points:
     - combine_features = geometric_features.__main__:combine_features
     - difference_features = geometric_features.__main__:difference_features

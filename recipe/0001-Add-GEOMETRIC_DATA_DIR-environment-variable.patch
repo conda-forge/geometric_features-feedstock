@@ -1,0 +1,54 @@
+From 35fd7b123b9b44a9245ea853b0ef473c45b03d7b Mon Sep 17 00:00:00 2001
+From: Xylar Asay-Davis <xylarstorm@gmail.com>
+Date: Wed, 4 Mar 2020 04:27:57 +0100
+Subject: [PATCH] Add GEOMETRIC_DATA_DIR environment variable
+
+This is the default location to look for geometric data if it is
+set.  The ability to set this variable will enable optionally
+packaging the data with the conda package.
+---
+ geometric_features/geometric_features.py | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/geometric_features/geometric_features.py b/geometric_features/geometric_features.py
+index a4c624a..fd16004 100644
+--- a/geometric_features/geometric_features.py
++++ b/geometric_features/geometric_features.py
+@@ -34,15 +34,16 @@ class GeometricFeatures(object):
+     # -------
+     # Xylar Asay-Davis
+ 
+-    def __init__(self, cacheLocation='./geometric_data',
+-                 remoteBranchOrTag=None):
++    def __init__(self, cacheLocation=None, remoteBranchOrTag=None):
+         '''
+         The constructor for the GeometricFeatures object
+ 
+         Parameters
+         ----------
+         cacheLocation : str, optional
+-            The location of the local geometric features cache
++            The location of the local geometric features cache.  If not
++            specified, the environment variable ``$GEOMETRIC_DATA_DIR`` is
++            used if it is set and ``./geometric_data`` is used otherwise.
+ 
+         remoteBranchOrTag : str, optional
+             The branch or tag from the ``geometric_features`` repo to download
+@@ -50,7 +51,13 @@ class GeometricFeatures(object):
+             a tag the same as this version of ``geometric_features``
+         '''
+ 
+-        self.cacheLocation = cacheLocation
++        if cacheLocation is None:
++            if 'GEOMETRIC_DATA_DIR' in os.environ:
++                self.cacheLocation =  os.environ['GEOMETRIC_DATA_DIR']
++            else:
++                self.cacheLocation = './geometric_data'
++        else:
++            self.cacheLocation = cacheLocation
+         if remoteBranchOrTag is None:
+             self.remoteBranch = geometric_features.__version__
+         else:
+-- 
+2.23.0
+
