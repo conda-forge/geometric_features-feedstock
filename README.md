@@ -5,7 +5,7 @@ Home: https://github.com/MPAS-Dev/geometric_features
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: Tools for manipulating collections of geojson geometric features
 
