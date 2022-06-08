@@ -37,7 +37,6 @@ requirements:
     - requests
     - progressbar2
     - setuptools
-    - six
 
 test:
   requires:
