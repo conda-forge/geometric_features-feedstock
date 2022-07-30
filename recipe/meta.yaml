@@ -1,5 +1,5 @@
 {% set name = "geometric_features" %}
-{% set version = "0.6.0" %}
+{% set version = "0.7.0" %}
 {% set build = 0 %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/MPAS-Dev/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 42b672928597bc8e4bbe2f87f96696b738a54bd52b00962ca67c68f221d7133a
+  sha256: b869bdd5f1aa7b5e8d0c6316092ab1013f1f9de73baa9ed4c099ffcc81419bdf
 
 build:
   number: {{ build }}
