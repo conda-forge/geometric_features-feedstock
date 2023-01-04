@@ -33,7 +33,7 @@ requirements:
     - numpy
     - matplotlib-base
     - cartopy
-    - shapely
+    - shapely >=2.0,<3.0
     - requests
     - progressbar2
     - setuptools
