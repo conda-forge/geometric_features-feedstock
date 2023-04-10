@@ -1,11 +1,11 @@
-About geometric_features
-========================
+About geometric_features-feedstock
+==================================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/geometric_features-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/MPAS-Dev/geometric_features
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/geometric_features-feedstock/blob/main/LICENSE.txt)
 
 Summary: Tools for manipulating collections of geojson geometric features
 
