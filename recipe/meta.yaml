@@ -41,6 +41,8 @@ requirements:
 test:
   requires:
     - pytest
+    # temporarily until python 3.12 issue gets fixed
+    - setuptools
   imports:
     - geometric_features
     - pytest
