@@ -1,5 +1,5 @@
 {% set name = "geometric_features" %}
-{% set version = "1.5.0" %}
+{% set version = "1.6.0" %}
 {% set build = 0 %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/MPAS-Dev/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: c590f58255882acfc9c22b5b36fe2b8a9b5f860b26f2365a0d7be7b456b9c930
+  sha256: 89490ee86dafe1d4b60726ec14c2a5f9299bab9236d1b12ed3ac55ef90afdf3d
 
 build:
   number: {{ build }}
@@ -26,10 +26,11 @@ build:
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - pip
+    - setuptools >=60
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - cartopy
     - importlib_resources
     - matplotlib-base
@@ -40,9 +41,8 @@ requirements:
 
 test:
   requires:
+    - python {{ python_min }}
     - pytest
-    # temporarily until python 3.12 issue gets fixed
-    - setuptools
   imports:
     - geometric_features
     - pytest
