@@ -1,4 +1,4 @@
-From eb4b19523b51444ae7004d91f528a73aca58bcc4 Mon Sep 17 00:00:00 2001
+From b507df5e133076adc5c3ccbfdaec9b8a498aa91a Mon Sep 17 00:00:00 2001
 From: Xylar Asay-Davis <xylarstorm@gmail.com>
 Date: Sun, 22 Dec 2024 13:52:40 +0100
 Subject: [PATCH] Fix test_features_and_tags
@@ -12,7 +12,7 @@ directory.
  1 file changed, 11 insertions(+), 3 deletions(-)
 
 diff --git a/geometric_features/test/test_features_and_tags.py b/geometric_features/test/test_features_and_tags.py
-index e1892b20..6a92b73b 100644
+index e1892b20..4bef4979 100644
 --- a/geometric_features/test/test_features_and_tags.py
 +++ b/geometric_features/test/test_features_and_tags.py
 @@ -1,21 +1,29 @@
@@ -43,8 +43,8 @@ index e1892b20..6a92b73b 100644
          assert os.path.exists('features_and_tags.json')
  
 -        filename1 = 'geometric_features/features_and_tags.json'
-+        filename1 = (imp_res_files('geometric_features') /
-+                     'features_and_tags.json')
++        filename1 = str(imp_res_files('geometric_features') /
++                        'features_and_tags.json')
          filename2 = 'features_and_tags.json'
          with open(filename1, 'r') as f:
              lines1 = f.readlines()
