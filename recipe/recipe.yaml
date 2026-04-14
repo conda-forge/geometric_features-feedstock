@@ -1,0 +1,82 @@
+schema_version: 1
+
+context:
+  name: geometric_features
+  version: "1.6.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/MPAS-Dev/${{ name }}/archive/${{ version }}.tar.gz
+  sha256: b2e1126f5acc2d1465a0b8a02f2f7c55ae7b401dc5be0e32e3bc7d351f48493a
+  patches:
+    - 0001-fix-test-features-and-tags.patch
+
+build:
+  number: 1
+  noarch: python
+  python:
+    entry_points:
+      - combine_features = geometric_features.__main__:combine_features
+      - difference_features = geometric_features.__main__:difference_features
+      - fix_features_at_antimeridian = geometric_features.__main__:fix_features_at_antimeridian
+      - merge_features = geometric_features.__main__:merge_features
+      - plot_features = geometric_features.__main__:plot_features
+      - set_group_name = geometric_features.__main__:set_group_name
+      - simplify_features = geometric_features.__main__:simplify_features
+      - split_features = geometric_features.__main__:split_features
+      - tag_features = geometric_features.__main__:tag_features
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=60
+  run:
+    - python >=${{ python_min }}
+    - cartopy
+    - matplotlib-base
+    - numpy
+    - progressbar2
+    - requests
+    - shapely >=2.0,<3.0
+
+tests:
+  - python:
+      imports:
+        - geometric_features
+        - pytest
+      pip_check: false
+      python_version: ${{ python_min }}
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pytest
+    script:
+      - pytest --pyargs geometric_features
+      - combine_features -v
+      - difference_features -v
+      - fix_features_at_antimeridian -v
+      - merge_features -v
+      - plot_features -v
+      - set_group_name -v
+      - simplify_features -v
+      - split_features -v
+      - tag_features -v
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Tools for manipulating collections of geojson geometric features
+  description: |
+    Tools for manipulating regions, transects, and points in geojson format
+    for use in initializing climate models and analyzing their output.
+  homepage: https://github.com/MPAS-Dev/geometric_features
+  repository: https://github.com/MPAS-Dev/geometric_features
+  documentation: https://github.com/MPAS-Dev/geometric_features/README.md
+
+extra:
+  recipe-maintainers:
+    - xylar
