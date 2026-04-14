@@ -2,8 +2,6 @@
 
 $PYTHON -m pip install . --no-deps -vv
 
-cp -r "${SRC_DIR}/geometric_data" "${PREFIX}/share/geometric_data"
-
 ACTIVATE_DIR="${PREFIX}/etc/conda/activate.d"
 DEACTIVATE_DIR="${PREFIX}/etc/conda/deactivate.d"
 mkdir -p "${ACTIVATE_DIR}"
