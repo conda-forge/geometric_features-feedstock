@@ -45,7 +45,6 @@ tests:
   - python:
       imports:
         - geometric_features
-        - pytest
       pip_check: false
       python_version: ${{ python_min }}
   - requirements:
