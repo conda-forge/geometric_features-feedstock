@@ -9,8 +9,6 @@ package:
 source:
   url: https://github.com/MPAS-Dev/{{ name }}/archive/{{ version }}.tar.gz
   sha256: 8908e1fe72a5527345ba2e0f9f876e53c47ffe452e3693f94ceea7f281bf22c0
-  patches:
-    - 0001-fix-test-features-and-tags.patch
 
 build:
   number: {{ build }}
