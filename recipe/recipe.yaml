@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: geometric_features
-  version: "1.6.1"
+  version: "1.6.3"
 
 package:
   name: ${{ name|lower }}
@@ -10,12 +10,10 @@ package:
 
 source:
   url: https://github.com/MPAS-Dev/${{ name }}/archive/${{ version }}.tar.gz
-  sha256: b2e1126f5acc2d1465a0b8a02f2f7c55ae7b401dc5be0e32e3bc7d351f48493a
-  patches:
-    - 0001-fix-test-features-and-tags.patch
+  sha256: 52de5cbfebb5cfee37a0e39311e345f4294c9df4e60d9a01158c80043e4bb43d
 
 build:
-  number: 1
+  number: 0
   noarch: python
   python:
     entry_points:
@@ -56,15 +54,15 @@ tests:
         - pytest
     script:
       - pytest --pyargs geometric_features
-      - combine_features -v
-      - difference_features -v
-      - fix_features_at_antimeridian -v
-      - merge_features -v
-      - plot_features -v
-      - set_group_name -v
-      - simplify_features -v
-      - split_features -v
-      - tag_features -v
+      - combine_features --help
+      - difference_features --help
+      - fix_features_at_antimeridian --help
+      - merge_features --help
+      - plot_features --help
+      - set_group_name --help
+      - simplify_features --help
+      - split_features --help
+      - tag_features --help
 
 about:
   license: BSD-3-Clause
